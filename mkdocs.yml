@@ -1,0 +1,18 @@
+site_name: Golang Tutorial
+site_url: https://golangtutorial.com/
+nav:
+  - Home: index.md
+  - Глава 1. Основы языка Go:
+      - Первая программа: firstProg.md
+      - Переменные: var.md
+      - Типы данных: typeOf.md
+theme: readthedocs
+markdown_extensions:
+    - extra
+    - tables
+    - mdx_math:
+        enable_dollar_delimiter: True
+    - fenced_code
+theme: readthedocs
+extra_javascript: 
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML
