@@ -6,6 +6,7 @@ nav:
       - Первая программа: firstProg.md
       - Переменные: var.md
       - Типы данных: typeOf.md
+      - Арифметические операции: arith.md
 theme: readthedocs
 markdown_extensions:
     - extra
