@@ -10,6 +10,7 @@ nav:
       - Константы: const.md
       - Условные выражения и условные конструкции: condit.md
       - Массивы и срезы: array.md
+      - Циклы: cicle.md
 theme: readthedocs
 markdown_extensions:
     - extra
