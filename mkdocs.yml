@@ -7,6 +7,9 @@ nav:
       - Переменные: var.md
       - Типы данных: typeOf.md
       - Арифметические операции: arith.md
+      - Константы: const.md
+      - Условные выражения и условные конструкции: condit.md
+      - Массивы и срезы: array.md
 theme: readthedocs
 markdown_extensions:
     - extra
