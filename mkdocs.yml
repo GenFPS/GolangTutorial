@@ -1,7 +1,7 @@
 site_name: Golang Tutorial
 site_url: https://golangtutorial.com/
 nav:
-  - Home: chapter_1/index.md
+  - Home: index.md
   - Глава 1. Основы языка Go:
       - Первая программа: chapter_1/firstProg.md
       - Переменные: chapter_1/var.md
