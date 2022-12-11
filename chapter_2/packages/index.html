@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_2/packages/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Пакеты - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041f\u0430\u043a\u0435\u0442\u044b";
+        var mkdocs_page_input_path = "chapter_2\\packages.md";
+        var mkdocs_page_url = "/chapter_2/packages/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/var/">Переменные</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/typeOf/">Типы данных</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/const/">Константы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/condit/">Условные выражения и условные конструкции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/array/">Массивы и срезы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/cicle/">Циклы</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../function/">Функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pointers/">Указатели</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Пакеты</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Импорт пакетов</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Пакет из нескольких файлов.</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Файлы из разных пакетов</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 2. Функции, пакеты и другое &raquo;</li>
+      <li>Пакеты</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Пакеты</h1>
+<p>Пакет Go состоит из Go-файлов, расположенных в одной и той же директории, в начале которых имеется одинаковое выражение <code>package</code>. Пакеты, подключаемые к программам, позволяют расширять их возможности. Некоторые пакеты входят в состав стандартной библиотеки Go. А это значит, что они, если вы пользуетесь Go, уже у вас установлены.</p>
+<p>Код пакета располагается в одном или нескольких файлах с расширением go. Для определения пакета применяется ключевое слово package. Например:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+
+    fmt.Println(&quot;Hello there&quot;)
+}
+</code></pre>
+<p>В данном примере пакет называется <strong>main</strong>. Определение пакета должно идти в начале файла.</p>
+<p>Существеют два типа пакетов: исполняемые - <strong>executable</strong> и библиотеки <strong>reusable</strong>. Для создания исполняемых файлов пакет должен иметь имя <strong>main</strong>. Все остальные пакеты не являются исполняемыми. При этом пакет <strong>main</strong> должен содержать функцию <strong>main</strong>, которая является входной точкой в приложение.</p>
+<h2 id="_2">Импорт пакетов</h2>
+<p>Для использования уже готовых пакетов мы используем оператор <strong>import</strong>. Например, в примере мы подключили пакет <code>"fmt"</code>, в котором есть функции <strong>Print()</strong>, <strong>Printf()</strong>, <strong>Println()</strong>, <strong>Scan()</strong> и т.д. Соответственно чтобы использовать эти функции, необходимо импортировать пакет <code>fmt</code>:</p>
+<pre><code>import &quot;fmt&quot;
+</code></pre>
+<p>Нередко программы подключают (а в основном так и делают) сразу несколько пакетов. В этом случае можно импортировать каждый пакет:</p>
+<pre><code>import &quot;fmt&quot;
+import &quot;bufio&quot;
+import &quot;math&quot;
+</code></pre>
+<p>Однако запись в таком виде очень громоздка, поэтому существет возможность сокращенного импорта пактов:</p>
+<pre><code>import (
+    &quot;fmt&quot;
+    &quot;bufio&quot;
+    &quot;math&quot;
+)
+</code></pre>
+<p>Подключение пакетов значительно расширяет функциональность и возможность кода в Go. Так, например, пакет <code>"math"</code> предоставляет большую возможность в написании (интерпретировании) математических формул. Например, следующая мат. формула:</p>
+<p>
+<script type="math/tex; mode=display">
+f(n) = \sqrt[2]{n^5 + 4n^2 + 2} + \frac{\pi^2}{2} \times \log^2_{2}{n}
+</script>
+</p>
+<p>Будет выглядеть следующим образом:</p>
+<pre><code>func f(n float64) float64 {
+    formulaP1 := math.Sqrt(math.Pow(n, 5) + 4*math.Pow(n, 2) + 2)
+    formulaP2 := math.Pow(math.Pi, 2)/2 * math.Pow(math.Log2(n), 2)
+
+    return formulaP1 + formulaP2
+}
+</code></pre>
+<p>Первая часть (<code>formulaP1</code>) — <script type="math/tex">f(n) = \sqrt[2]{n^5 + 4n^2 + 2}</script>
+</p>
+<p>Вторая часть (<code>formulaP2</code>) — <script type="math/tex">\frac{\pi^2}{2} \times \log^2_{2}{n}</script>
+</p>
+<p>Полный список встроенных пакетов в Go можно найти по <a href="https://pkg.go.dev/std">тут</a>.</p>
+<h2 id="_3">Пакет из нескольких файлов.</h2>
+<p>Как уже писалось ранее, один пакет может состоять из нескольких фалов. Давайте протестируем пример выше, но функцию, которую мы написали (<code>f(n)</code>) будет в другом файле:</p>
+<p><img alt="" src="../../src/Chap2Pack1.png" /></p>
+<p>Т.е. в файле <strong>f(n).go</strong> будет этот фрагмент кода (функция):</p>
+<pre><code>package main
+import &quot;math&quot;
+
+func f(n float64) float64 {
+    formulaP1 := math.Sqrt(math.Pow(n, 5) + 4*math.Pow(n, 2) + 2)
+    formulaP2 := math.Pow(math.Pi, 2)/2 * math.Pow(math.Log2(n), 2)
+
+    return formulaP1 + formulaP2
+}
+</code></pre>
+<p>А файл main.go будет исполняемым, в которой мы будем вызывать функцию <strong>f(n)</strong> из файла <strong>f(n).go</strong>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+
+func main() {
+    result := f(2)              // 2 - входной параметр для нашей функции
+    fmt.Printf(&quot;%.4f&quot;, result)
+}
+</code></pre>
+<p><em>Примечание: <code>"%.4f"</code> означает количество выводимых чисел после запятой для типов <code>float32</code> и <code>float64</code>. Данная надпись используется только в функции вида <code>Printf()</code>.</em></p>
+<p>Таким образом, оба файла принадлежать пакету <strong>main</strong> (файлов, конечно, может быть больше).</p>
+<p>Далее необходимо скомпилировать из этих двух файлов программу. Для этого прейдетм к консоле к папке наших файлов и выполним следующую команду:</p>
+<pre><code>go build -o main.exe f(n).go main.go
+</code></pre>
+<p>Флаг <strong>-o</strong> указывает, как будет называться выходной файл - в данном случае это <strong>main.exe</strong>. Затем идут все компилируемые файлы (<strong>f(n).go</strong>, <strong>main.go</strong>). После выполнения этой команды будет создан файл main.exe, который мы сможем запустить в консоли:</p>
+<p><img alt="" src="../../src/Chap2Pack2.png" /></p>
+<p>И посе запуска <strong>main.exe</strong> мы получим результат выполненной программы.</p>
+<h2 id="_4">Файлы из разных пакетов</h2>
+<p>Теперь рассмотрим такую ситуацию, где файлы нашей программы разделены по разным пакетам (т.е. находятся в разных папках/директориях). Например определим в папке нашего проекта каталог (папку) <strong>mathFormules</strong>. Т.е. наша рабочая область в среде разраюотки будет выглядеть следующим образом:</p>
+<p><img alt="" height="200" src="../../src/Chap2Pack3.png" style="display: block; margin: 0 auto" width="200" /></p>
+<p>Код файла <strong>f(n).go</strong> принадлежит пакету <strong>mathFormules</strong>. Код программы будет выглядеть следующим образом:</p>
+<pre><code>package mathFormules
+import &quot;math&quot;
+
+func F(n float64) float64 {
+    formulaP1 := math.Sqrt(math.Pow(n, 5) + 4*math.Pow(n, 2) + 2)
+    formulaP2 := math.Pow(math.Pi, 2)/2 * math.Pow(math.Log2(n), 2)
+
+    return formulaP1 + formulaP2
+}
+</code></pre>
+<p>Важно отметить, что название функции из другого пакета должа начинаться с заглавной букы (<code>F(n float64)</code>), т.к. благодаря этому эта функция будет видна в других пакетах.</p>
+<p>Ну и тобы использовать функцию <strong>f()</strong>, надо импортировать этот пакет в файле main.go:</p>
+<pre><code>package main
+import (
+    &quot;fmt&quot;
+    &quot;./mathFormules&quot;
+)
+
+func main() {
+    fmt.Printf(&quot;%.4f&quot;, mathFormules.F(2))
+}
+</code></pre>
+<p>Путь "./mathFormules" указывает на то, что пакет находится в папке mathFormules.</p>
+<p>Компиляция и выполнение программы осуществляется также как и ранее без необходимости указания всех файлов из других пакетов:</p>
+<p><img alt="" src="../../src/Chap2Pack4.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../pointers/" class="btn btn-neutral float-left" title="Указатели"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../pointers/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

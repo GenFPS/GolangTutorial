@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_1/cicle/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Циклы - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u0426\u0438\u043a\u043b\u044b";
+        var mkdocs_page_input_path = "chapter_1\\cicle.md";
+        var mkdocs_page_url = "/chapter_1/cicle/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../var/">Переменные</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../typeOf/">Типы данных</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../const/">Константы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../condit/">Условные выражения и условные конструкции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../array/">Массивы и срезы</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Циклы</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#for">Вариации конструкции цикла for</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Вложенные циклы</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#for_1">Цикл for и массивы/срезы</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#break-continue">Операторы break и continue</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#break">break</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#continue">continue</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/function/">Функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/pointers/">Указатели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/packages/">Пакеты</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 1. Основы языка Go &raquo;</li>
+      <li>Циклы</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Циклы</h1>
+<p>Циклы нужны для того, чтобы в зависимости от некоторого условия или задачи выполнять некоторые действия множество раз.</p>
+<p>В отличии от других языков программирования, единственной конструкцией для создания циклов является <code>for</code>, который может принимать разные формы. Базовая конструкция цикла <code>for</code> вяглядит следующим образом:</p>
+<pre><code>for [инициализация счетчика]; [условие]; [изменение счетчика]{
+    // действия
+}
+</code></pre>
+<p>Давайте теперь рассмотрим пример программы с циклом <code>for</code>. Например, нам нужно проссумировать все числа от 1 до 10. Такую программу с легостью можно написать, используя цикл <code>for</code>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    sum := 0    // создаем переменную, в которой будет суммировать значения
+    for i := 1; i &lt; 10; i++ {
+        sum += i
+    }
+    fmt.Println(sum)    // 45  (все проссумированные значения от 1 до 10)
+}
+</code></pre>
+<p>Теперь давайте подробно разберем конструкцию цикла в нашей программе. Вначале происходит инциализация (присваивание) счетчика: <code>i := 1</code> (начальное значение). По сути она представляет объявление переменной, которую мы будем использовать внутри цикла.</p>
+<p>Условие <code>i &lt; 10</code> означает, что пока это условие выполняется, то мы будем инкремировать (3-я часть цикла - <code>i++</code>) наше значение <code>i</code> на 1 (<code>i++</code> эквивалентно <code>i += 1</code>).</p>
+<p>Соответственно, цикл прекращается тогда, когда значение <code>i</code> равно 11 (<code>i == 11</code>).</p>
+<h2 id="for">Вариации конструкции цикла for</h2>
+<p>На самом деле необязательно указывать все условия при объявлении цикла. Например, можно объявить перменную <code>i</code> раньше самой конструкции цикла:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var i int = 1
+
+    for ; i &lt; 5; i++ {
+        fmt.Println(i * i)
+    }
+}
+</code></pre>
+<p>Можно оставить и вовсе только одно условие, тогда цикл <code>for</code> будет являться, по сути, аналогом цикла <code>while</code> из других языков программирование (самого слова <code>while</code> нет в Go):</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var i int = 1
+
+    for i &lt; 5 {
+        fmt.Println(i * i)
+        i++
+    }
+}
+</code></pre>
+<p>Однако, в этом случае необходимо будет обозначить условие выхода цикла (условие завершения), т.к. в противном случае программа будет выполняться бесконечно. В данном случае, <code>i++</code> является условием выхода, так как при каждой итерации (т.е. при каждом шаге выполнения цикла) мы увеличиваем <code>i</code> на 1.</p>
+<p>Пример бесконечного цикла:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var i int = 1
+
+    for i &lt; 5 {
+        fmt.Println(i * i)
+    }
+}
+</code></pre>
+<p>Еще бесконечный цикл можно указать таким образом:</p>
+<pre><code>for {
+
+}
+</code></pre>
+<h2 id="_2">Вложенные циклы</h2>
+<p>Вложенный цикл расположен в еще одном цикле:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+
+    for i := 1; i &lt; 3; i++ {
+        fmt.Println(&quot;i равно&quot;, i)
+        for j := 1; j &lt; 3; j++ {
+            fmt.Println(&quot;J равно&quot;, j)
+        }
+    }
+}
+</code></pre>
+<p>В результате мы получим следующий вывод на консоль:</p>
+<pre><code>i равно 1
+J равно 1
+J равно 2
+i равно 2
+J равно 1
+J равно 2
+</code></pre>
+<p>Из результата мы видим что, для каждого значения <code>i</code> значение <code>j</code> выводилось ровно 2 раза!</p>
+<p>Чтобы лучше понять работу вложенных циклов, вспомним по какому принципу работают наши часы. Мы знаем, что секундная, минутная и часовая стрелки вращаются вокруг циферблата. Часовая стрелка смещается всего на 1 шаг для каждых 60 шагов минутной стрелки. Минутная же стрелка вращается на 1 шаг для каждых 60 шагов секундных стрелок. Таким образом, это означает, что для каждого полного оборота часовой стрелки (12 шагов, т.е. часов), минутная стрелка сделает 720 шагов, а секундная 43200 шагов!</p>
+<p align="center">
+    <img width="350" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/AnalogClockAnimation1_2hands_1h_in_6sec.gif" alt="Clock logo">
+</p>
+
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+
+    for hours := 0; hours &lt; 12; hours++ {
+        for minutes := 0; minutes &lt; 60; minutes++ {
+            for seconds := 0; seconds &lt; 60; seconds++{
+                fmt.Println(hours, &quot;:&quot;, minutes, &quot;:&quot;, seconds)
+            }
+        }
+    }
+}
+</code></pre>
+<p>Результатом работы такого кода будет:</p>
+<pre><code>0 : 0 : 0
+0 : 0 : 1
+0 : 0 : 2
+...
+11 : 59 : 57
+11 : 59 : 58
+11 : 59 : 59
+</code></pre>
+<h2 id="for_1">Цикл for и массивы/срезы</h2>
+<p>Для перебора массивов или срезов можно использовать следующую форму цикла <code>for</code>:</p>
+<pre><code>for индекс, значение := range массив/срез {
+    // действия
+}
+</code></pre>
+<p>Давайте теперь рассмотрим более подробный пример. Допустим у нас есть массив некоторых чисел и нужно создать срез, в котором будут только четные значение:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbs = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+    var even []int
+
+    for i, v := range numbs {   // i, v сокр. от index, value
+        if v % 2 == 0 {
+            even = append(even, numbs[i])
+        }
+    }
+    fmt.Println(even)   // [2 4 6 8 10]
+}
+</code></pre>
+<p>Если мы не планируем использовать значения или индексы элементов, то мы можем вместо них указать прочерк. Например, в данной задаче нам вовсе не нужны индексы:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbs = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+    var even []int
+
+    for _, v := range numbs {
+        if v % 2 == 0 {
+            even = append(even, v)
+        }
+    }
+    fmt.Println(even)   // [2 4 6 8 10]
+}
+</code></pre>
+<p>Но также для перебора массива или среза можно использовать и стандартную версию цикла <code>for</code>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbs = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+    var even []int
+
+    for i := 0; i &lt; len(numbs); i++ {
+        if numbs[i] % 2 == 0 {
+            even = append(even, numbs[i])
+        }
+    }
+    fmt.Println(even)   // [2 4 6 8 10]
+}
+</code></pre>
+<p>В этом примере счетчик <code>i</code> играет роль индекса массива. Цикл выполняется, пока счетчик <code>i</code> не станет равным длине массива. Как мы помним из предыдущего материала, значение длины массива возвращает функция <strong>len()</strong>.</p>
+<h2 id="break-continue">Операторы break и continue</h2>
+<p>Часто в цикле <code>for</code> используют такие операторы как <code>break</code> и <code>continue</code>. Начнем с оператора break.</p>
+<h3 id="break">break</h3>
+<p>Данный оператор полностью осуществляет выход. из цикла, несмотря даже на само условие в цикле. Например, нам неопходимо найти опредленное чилсо в массиве. Если это число найдено, то последующие итерации нас уже не интересует, а поэтому, можно (и даже нужно) использовать оператора <code>break</code>. Допустим, нам надо найти число 5 и вывести его:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbs = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+    for i := 0; i &lt; len(numbs); i++ {
+        if numbs[i] == 5 {
+            fmt.Println(numbs[i])   // 5
+            break   // цикл останавливается
+        }
+    }
+}
+</code></pre>
+<p>Да, во втором случае результат будет абсолютно таким же:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbs = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+    for i := 0; i &lt; len(numbs); i++ {
+        if numbs[i] == 5 {
+            fmt.Println(numbs[i])   // 5
+        }
+    }
+}
+</code></pre>
+<p>Однако программа продолжит дальше итерироваться, не смотря на то, что мы уже нашли число 5. А это негативно сказывается на быстродействие программы.</p>
+<h3 id="continue">continue</h3>
+<p>Оператор <code>continue</code> позволяет нам пропускать те значения, которые нас не интересуют или которые необходимо проигнорировать. Например, дан массив положительных и отрицательных чисел и нужно просуммировать только положительные значения:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbs = [10]int{-1, 2, -3, 4, 5, 6, 7, 8, -9, -10}
+    sum := 0
+
+    for i := 0; i &lt; len(numbs); i++ {
+        if numbs[i] &lt; 0 {
+            continue
+        }
+        sum += numbs[i]
+    }
+    fmt.Println(sum)    // 32
+}
+</code></pre>
+<p>Т.е. в данном случае, если выполняется условие <code>numbs[i] &lt; 0</code> (отрицательное значение), то срабатывает оператор <code>continue</code> которыей пропускает отрицательое значение.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../array/" class="btn btn-neutral float-left" title="Массивы и срезы"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../chapter_2/function/" class="btn btn-neutral float-right" title="Функции">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../array/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../chapter_2/function/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

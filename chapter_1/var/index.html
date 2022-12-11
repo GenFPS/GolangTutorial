@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_1/var/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Переменные - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0435";
+        var mkdocs_page_input_path = "chapter_1\\var.md";
+        var mkdocs_page_url = "/chapter_1/var/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Переменные</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Примеры программ с переменными</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Краткая инициализация переменных</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Комментарии</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../typeOf/">Типы данных</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../const/">Константы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../condit/">Условные выражения и условные конструкции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../array/">Массивы и срезы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cicle/">Циклы</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/function/">Функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/pointers/">Указатели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/packages/">Пакеты</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 1. Основы языка Go &raquo;</li>
+      <li>Переменные</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Переменные</h1>
+<p>Переменная представляет собой именованный участок в памяти, который может хранить определенное значение. В Go для определения (создания) переменной применяется ключевое слово <strong>var</strong>, после которого идет имя переменной, а затем указывается ее тип (подробно о типах данных рассмотрим в следующем пункте). Общий синтаксис выглядит следующим образом:</p>
+<pre><code>var имя_переменной тип_данных
+</code></pre>
+<p>Пример создания переменной в Go:</p>
+<pre><code>var greeting string
+</code></pre>
+<p>В данном примере мы создали переменную с именем <strong>greeting</strong>, которая может хранить тип данных <strong>string</strong>.</p>
+<p>Также возможно одновременно объявить несколько переменных через запятую:</p>
+<pre><code>var name, surname string
+</code></pre>
+<p>Здесь уже определены сразу две переменные <strong>name</strong> и <strong>surname</strong>, которые имеют тип <strong>string</strong> и которые принадлежат типу <strong>string</strong>.</p>
+<h2 id="_2">Примеры программ с переменными</h2>
+<p>Теперь мы можем объявить переменную типа <strong>string</strong> и присвоить ей любое значение, а затем её вывести.</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+
+    var name, surname string
+
+    name = &quot;Ivan&quot;
+    surname = &quot;Ivanov&quot;
+
+    fmt.Println(name) // Ivan
+    fmt.Println(surname) // Ivanov
+}
+</code></pre>
+<p>Поскольку переменные <strong>name</strong> и <strong>surname</strong> имеют тип данных <strong>string</strong>, им можно присвоить строку. В данном случае переменная <strong>name</strong> хранит строку <code>"Ivan"</code>, a <strong>surname</strong> хранит <code>"Ivanov"</code>. С помощью функции Println значение этих переменных выводится на консоль.</p>
+<p><em>Важно! Go - регистрозависимый язык. Это значит, что переменные с именами <strong>name</strong> и <strong>Name</strong> будут представлять собой разные переменные.</em></p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var name string
+    name = &quot;Ivan&quot;
+
+    fmt.Println(Name) // Ошибка! Переменной Name не существует, есть переменная name
+}
+</code></pre>
+<p>Также возможно сразу при объявлении переменной присвоить ей начальное значение. Данный прием называется инциализацией:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var name string = &quot;Ivan&quot;
+
+    fmt.Println(name)
+}
+</code></pre>
+<p>Если мы хотим сразу определить несколько переменных и присвоить им начальные значения, то можно обернуть их в скобки:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var (
+        name string = &quot;Ivan&quot;
+        surname string = &quot;Ivanov&quot;
+    )
+
+    fmt.Println(name)       // Ivan
+    fmt.Println(surname)    // Ivanov
+</code></pre>
+<p>Одной из особенностей переменных является то, что их значение можно многократно изменять:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var name string = &quot;Ivan&quot;
+    fmt.Println(name)  // Ivan
+
+    name = &quot;Petr&quot;
+    fmt.Println(name)  // Petr
+
+    name = &quot;Oleg&quot;
+    fmt.Println(hello)  // Oleg
+}
+</code></pre>
+<h2 id="_3">Краткая инициализация переменных</h2>
+<p>Существует более краткий способ объявить переменную:</p>
+<pre><code>name := &quot;Ivan&quot;
+</code></pre>
+<p>В этом случае тип данных явным образом не указывается, он выводится автоматически из присваиваемого значения. Это равносильно следующему примеру:</p>
+<pre><code>var name string = &quot;Ivan&quot;
+</code></pre>
+<p>Также возможно объявить таким способом (пример неявной типизации):</p>
+<pre><code>var name = &quot;Ivan&quot;
+</code></pre>
+<h2 id="_4">Комментарии</h2>
+<p>Комментарии служат для описания действий, которые производит программа или какие-то ее части. При компиляции комментарии не учитываются и не оказывают никакого влияния на работу приложения. Комментарии бывают однострочными и многострочными.</p>
+<p>В вышеперечилсенных примерах мы уже использовали комментарии. Однострочный комментарий располагается в одну строку после двойного слеша (<code>//</code>). Все, что идет после этих символов, воспринимается компилятором как комментарий. Многострочный комментарий заключается между символами <code>/*</code> и <code>*/</code> и может занимать несколько строк, например:</p>
+<pre><code>/*
+    The first porgramm
+    in the Golang
+*/
+
+package main // определение пакета для файла main.go
+import &quot;fmt&quot; // подключение пакета &quot;fmt&quot;
+
+// определение функции main
+
+fun main() {
+    fmt.Println(&quot;Hello there!&quot;)  // вывод строки на консоль
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../firstProg/" class="btn btn-neutral float-left" title="Первая программа"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../typeOf/" class="btn btn-neutral float-right" title="Типы данных">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../firstProg/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../typeOf/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

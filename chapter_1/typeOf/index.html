@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_1/typeOf/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Типы данных - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u0422\u0438\u043f\u044b \u0434\u0430\u043d\u043d\u044b\u0445";
+        var mkdocs_page_input_path = "chapter_1\\typeOf.md";
+        var mkdocs_page_url = "/chapter_1/typeOf/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../var/">Переменные</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Типы данных</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Числа</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">Целые числа</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Числа с плавающей точкой</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Комплексные числа</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bool">Тип bool</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">Тип строка</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#escape-">Escape-последовательности</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../const/">Константы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../condit/">Условные выражения и условные конструкции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../array/">Массивы и срезы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cicle/">Циклы</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/function/">Функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/pointers/">Указатели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/packages/">Пакеты</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 1. Основы языка Go &raquo;</li>
+      <li>Типы данных</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Типы данных</h1>
+<p>Типы данных определяют виды значений, которые сохраняются определенными переменными при написании программы. Типы данных также помогают определить операции (сложение, вычитание и т.п.), которые можно выполнять с использованием данных.</p>
+<p>Как отмечалось ранее в данном руководстве, Go — это язык программирования со статической типизацией. Это означает, что переменные всегда имеют определенный тип и этот тип нельзя изменить.</p>
+<p>Пример:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var name string = &quot;Ivan&quot;
+    fmt.Println(name)   // Ivan
+
+    name = 25           // На этом этапе программа уже будет &quot;ругаться&quot;
+    fmt.Println(name)   // Вывод: cannot use 25 (untyped int constant) as string value in assignment
+}
+</code></pre>
+<p>Предложение <code>cannot use 25 (untyped int constant) as string value in assignment</code> означает, что мы не можем присвоить значение <code>25</code> в качестве строкового значения (<strong>string</strong>) при инициализации. Это связано с тем, что значение <code>25</code> имеет другой тип данных (<strong>int - сокращенное от integer (целое число)</strong>).</p>
+<h2 id="_2">Числа</h2>
+<p>В Go есть несколько различных типов данных для представления чисел. В данном руководстве мы разделим числа на два различных класса: целые числа (<strong>int</strong>) и числа с плавающей точкой (<strong>float</strong>).</p>
+<h3 id="_3">Целые числа</h3>
+<p>Целые числа — это числа без дробной части. Наша система строится на 10 различных цифрах (от 0 до 9). В Go существуют следующие типы целых чисел: <code>uint8</code>, <code>uint16</code>, <code>uint32</code>, <code>uint64</code>, <code>int8</code>, <code>int16</code>, <code>int32</code> и <code>int64</code>. 8, 16, 32 и 64 говорит нам, сколько бит использует каждый тип. <code>uint</code> означает «unsigned integer» (беззнаковое целое). Беззнаковое целое может принимать только положительные значения (или ноль), в то время как int означает «signed integer» (знаковое целое).</p>
+<table>
+<thead>
+<tr>
+<th align="center">Тип данных</th>
+<th align="left">Значение аббреваитуры</th>
+<th align="left">Диапазон</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">uint8</td>
+<td align="left">Беззнаковые 8-битные целые числа</td>
+<td align="left">от 0 до 255</td>
+</tr>
+<tr>
+<td align="center">uint16</td>
+<td align="left">Беззнаковые 16-битные целые числа</td>
+<td align="left">от 0 до 65535</td>
+</tr>
+<tr>
+<td align="center">uint32</td>
+<td align="left">Беззнаковые 32-битные целые числа</td>
+<td align="left">от 0 до 4294967295</td>
+</tr>
+<tr>
+<td align="center">uint64</td>
+<td align="left">Беззнаковые 64-битные целые числа</td>
+<td align="left">от 0 до 18446744073709551615</td>
+</tr>
+<tr>
+<td align="center">int8</td>
+<td align="left">Знаковые 8-битные целые числа</td>
+<td align="left">от -128 до 127</td>
+</tr>
+<tr>
+<td align="center">int16</td>
+<td align="left">Знаковые 16-битные целые числа</td>
+<td align="left">от -32768 до 32767</td>
+</tr>
+<tr>
+<td align="center">int32</td>
+<td align="left">Знаковые 32-битные целые числа</td>
+<td align="left">от -2147483648 до 2147483647</td>
+</tr>
+<tr>
+<td align="center">int64</td>
+<td align="left">Знаковые 64-битные целые числа</td>
+<td align="left">от -9223372036854775808 до 9223372036854775807</td>
+</tr>
+</tbody>
+</table>
+<p>Стоит отметить типы int и uint. Они имеют наиболее эффективный размер для определенной платформы (32 или 64 бита):</p>
+<ul>
+<li><code>int</code> - представляет целое число со знаком, которое в зависимости от платформы может занимать либо 4 байта, либо 8 байт. То есть соответствовать либо int32, либо int64.</li>
+<li><code>uint</code> - представляет целое число только без знака, которое, аналогично типу int, в зависимости от платформы может занимать либо 4 байта, либо 8 байт. То есть соответствовать либо uint32, либо uint64.</li>
+</ul>
+<p>Также в дополнение к этому существуют два типа-псевдонима: <strong>byte</strong> (то же самое, что <code>uint8</code>) и <strong>rune</strong> (то же самое, что <code>int32</code>). Байты очень распространенная единица измерения в компьютерах (1 байт = 8 бит, 1024 байта = 1 килобайт, 1024 килобайта = 1 мегабайт и т.д.), и именно поэтому тип byte в Go часто используется для определения других типов.</p>
+<p>Примеры определения переменных, которые представляют целочисленные типы:</p>
+<pre><code>var a int8 = -1
+var b uint8 = 2
+var c byte = 3      // byte - синоним типа uint8
+var d int16 = -4
+var f uint16 = 5
+var g int32 = -6
+var h rune = -7     // rune - синоним типа int32
+var j uint32 = 8
+var k int64 = -9
+var l uint64 = 10
+
+var m int = -1000
+var n uint = 1000
+</code></pre>
+<h3 id="_4">Числа с плавающей точкой</h3>
+<p>Числа с плавающей точкой — это числа, которые содержат вещественную часть (вещественные числа). Ярким представителем данного типа является число <script type="math/tex">\pi \approx 3.14159</script>. Для представления дробных чисел есть два типа:</p>
+<ul>
+<li><code>float32</code> — представляет собой число с плавающей точкой от 1.4 * 10<script type="math/tex">^{-45}</script> до 3.3 * 10<script type="math/tex">^{38}</script>. Занимает в памяти 32 бита (4 байта)</li>
+<li><code>float64</code> — представляет собой число с плавающей точной от 4.9 * 10<script type="math/tex">^{-324}</script> до 1.8 * 10<script type="math/tex">^{308}</script>. Занимает в памяти 64 бита (8 байт). По умолчанию присваивается именно <code>float64</code></li>
+</ul>
+<p>Примеры использования <code>float32</code> и <code>float64</code>:</p>
+<pre><code>var f float32 = 10.1
+var g float32 = 7.5
+var h float32 = 4.9
+
+var d float64 = 2.28
+var pi float64 = 3.14
+var e float64 = 2.718
+</code></pre>
+<h2 id="_5">Комплексные числа</h2>
+<p>В Golang также существуют комплексные числа как отдельный тип данных:</p>
+<ul>
+<li><code>complex64</code> — комплксное число, в которой вещественная и мнимая части представляют числа <code>float32</code></li>
+<li><code>complex128</code> — комплексное число, где вещественная и мнимая части представляют числа <code>float64</code></li>
+</ul>
+<p>Примеры переменных с типом <code>complex64</code> и <code>complex128</code>:</p>
+<pre><code>var z complex64 = 1+2i
+var l complex128 = 3+4i
+</code></pre>
+<h2 id="bool">Тип bool</h2>
+<p>Тип <strong>bool</strong> или логический тип может иметь значение <strong>true</strong> (истина) или <strong>false</strong> (ложь). Переменная такого типа будет знаимать только один байт. С этим типом часто используются три логических оператора:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Оператор</th>
+<th align="center">Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">&amp;&amp;</td>
+<td align="center">И</td>
+</tr>
+<tr>
+<td align="center">ll</td>
+<td align="center">ИЛИ</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="center">НЕ</td>
+</tr>
+</tbody>
+</table>
+<p><code>!</code> (НЕ - операция отрицания). Инвертирует значение. Если операнд равен <strong>true</strong>, то возвращает <strong>false</strong>, иначе возвращает <strong>true</strong>. Пример:</p>
+<pre><code>var a bool = true
+var b bool = !a // false
+var c bool = !b // true
+</code></pre>
+<p><code>&amp;&amp;</code> (И - конъюкция, логическое умножение). Возвращает <strong>true</strong>, если оба операнда не равны <strong>false</strong>. Возвращает <strong>false</strong>, если хотя бы один операнд равен <strong>false</strong>. Пример:</p>
+<pre><code>var b bool = 4 &gt; 3 &amp;&amp; 6 &gt; 8  // flase
+var c bool = 4 &gt; 3 &amp;&amp; 6 &gt; 5  // true
+</code></pre>
+<p><code>||</code> (ИЛИ - дизъюнкция, логическое сложение). Возвращает <strong>true</strong>, если <strong>хотя бы</strong> один операнд не равен <strong>false</strong>. Возвращает <strong>false</strong>, если оба операнда равны <strong>false</strong>. Пример:</p>
+<pre><code>var d bool = 2 &gt; 3 || 1 &gt; 2  // false
+var e bool = 2 &gt; 1 || 3 &gt; 4  // true
+</code></pre>
+<p><em>Примечание от автора</em>: если вы плохо знакомы с основами математической логики, то настоятельно рекомендую ознакомиться с данной <a href="http://mathprofi.ru/osnovy_matematicheskoj_logiki.html">статьей</a>.</p>
+<h2 id="_6">Тип строка</h2>
+<p>В теме <a href="../var/"><strong>Переменные</strong></a> мы уже косвенно затрагивали тип данных строка. Как вы уже знаете, строки представлены типом <strong>string</strong>. Литеральные значения, помещенные в кавычки относятся имеено к данному типу. Следующие строки кода равнозначны:</p>
+<pre><code>cake := &quot;cake&quot;
+var cake = &quot;cake&quot;
+var cake string = &quot;cake&quot;
+</code></pre>
+<p>При объявлении переменной без указанного значения она будет инициализирована с нулевым значением, а нулевые значения типа <strong>string</strong> являются пустые кавычки (<code>""</code>):</p>
+<pre><code>var fool string
+fmt.Println(fool) // &quot;&quot;
+</code></pre>
+<p>Кстати, если говорить о предыдущих изученных типах(<strong>int</strong>, <strong>float</strong>, <strong>bool</strong>), то картина будет выглядеть следующим образом:</p>
+<pre><code>var numOne int
+var numTwo float64
+var boo bool
+
+fmt.Println(numOne, numTwo, boo) // 0 0 false
+</code></pre>
+<p>Т.е. из вышеуказанного примера стоит обратить внимание на то, что у переменной с типом данных <strong>bool</strong> по умолчанию будет значение <code>false</code>.</p>
+<h3 id="escape-">Escape-последовательности</h3>
+<p>Помимо обычных символов строка может содержать специальные последовательности (или escape-последовательности), которые всегда начинаются с обратного слеша <code>\</code>. Таблица с наиболее часто используемыми escape-последовательностями представлена ниже:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Escape-последовательность</th>
+<th align="left">Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">\n</td>
+<td align="left">переход на новую строку</td>
+</tr>
+<tr>
+<td align="left">\t</td>
+<td align="left">табуляция</td>
+</tr>
+<tr>
+<td align="left">\"</td>
+<td align="left">двойная кавычка внутри строк</td>
+</tr>
+<tr>
+<td align="left">\\</td>
+<td align="left">обратный слеш</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../var/" class="btn btn-neutral float-left" title="Переменные"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../arith/" class="btn btn-neutral float-right" title="Арифметические операции">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../var/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../arith/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_1/const/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Константы - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041a\u043e\u043d\u0441\u0442\u0430\u043d\u0442\u044b";
+        var mkdocs_page_input_path = "chapter_1\\const.md";
+        var mkdocs_page_url = "/chapter_1/const/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../var/">Переменные</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../typeOf/">Типы данных</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Константы</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#iota">iota</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../condit/">Условные выражения и условные конструкции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../array/">Массивы и срезы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cicle/">Циклы</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/function/">Функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/pointers/">Указатели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/packages/">Пакеты</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 1. Основы языка Go &raquo;</li>
+      <li>Константы</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Константы</h1>
+<p>Константы также как и переменные хранят данные, но главное их отличие от переменных заключается в том, что значения констант нельзя изменить (они устанавливаются один раз).</p>
+<p>Для определения констант применяется ключевое слово <code>const</code>:</p>
+<pre><code>const pi float64 = 3.1415
+</code></pre>
+<p>Невозможно менять значение константы:</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    const pi float64 = 3.1415
+    pi = 2.7182
+
+    fmt.Println(pi) // Ошибка (cannot assign to pi (constant 3.1415 of type float64))
+}
+</code></pre>
+<p>Константы можно объявлять в блоке:</p>
+<pre><code>func main() {
+    const (
+        a int = 1
+        e float32 = 2.7
+        pi float64 = 3.1415
+    )
+}
+</code></pre>
+<p>Или так:</p>
+<pre><code>const pi, e = 3.1415, 2.7
+</code></pre>
+<p>Если у константы не указан тип, то он выводится неявно на основании того значения, которым инициализируется константа:</p>
+<pre><code>const b = 2             // тип int
+const pi, e = 3.1415    // тип float64
+</code></pre>
+<p>Обязательно необходимо инициализировать константу начальным значением при ее объявлении. Например, следующие определения констант являются недопустимыми, так как они не инициализируются:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    const d int
+
+    fmt.Println(d)     // Ошибка (missing init expr for d)
+}
+</code></pre>
+<p>Если определяется последовательность констант, то инициализацию значением можно опустить для всех констант, кроме первой. В этом случае константа без значения получит значение предыдущей константы:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    const (
+        a = 2
+        b
+        c
+        d = 4
+        e
+    )
+    fmt.Println(a, b, c, d, e)      // 2, 2, 2, 4, 4
+}
+</code></pre>
+<p>Константы можно инициализировать только константными значениями. Например, литералами типа чисел или строк, или значениями других констант. Однако инициализировать константу значением какой-либо переменной нельзя:</p>
+<pre><code>var a int = 5
+const b = a         // Ошибка, т.к. m - переменная
+const c = 5
+const d = c         // Ошибка нет, т.к. с - константа
+</code></pre>
+<h2 id="iota">iota</h2>
+<p>Ключевое слово <code>iota</code> представляет последовательные целочисленные константы 0, 1, 2,…</p>
+<p>Это предопределенный идентификатор в языке Go, который в обычном контексте содержит в себе значение 0. Однако в блоках const этот идентификатор увеличивается для каждой следующей константы на единицу. Это позволяет более удобно создавать константы, значения которых предлставляют непрерывную последовательность чисел. Для сравнение можно привести куски кода без <code>iota</code> и с <code>iota</code>:</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    const (
+        Zero = 0
+        One = 1
+        Two = 2
+        Three = 3
+        Four = 4
+        Five = 5
+    )
+
+    fmt.Println(Zero)    // вывод 0
+    fmt.Println(Five)    // вывод 5
+}
+</code></pre>
+<p>Этот же пример, но с использование <code>iota</code>:</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    const (
+        Zero = iota
+        One
+        Two
+        Three
+        Four
+        Five
+    )
+
+    fmt.Println(Zero)    // вывод 0
+    fmt.Println(Five)    // вывод 5
+}
+</code></pre>
+<p>Однако, можно начать не с 0, а с 1, тогда код будет выглядеть следующим образом:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    const = (
+        a1 = iota + 1
+        a2
+        a3
+    )
+    fmt.Println(a1, a2, a3) // 1 2 3
+}
+</code></pre>
+<p>Также можно использовать пустой идентификатор для того, чтобы пропустить значение в списке констант:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    const = (
+        a1 = iota + 1
+        -
+        a3
+        a4
+    )
+    fmt.Println(a1, a3, a4) // 1 3 4
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../arith/" class="btn btn-neutral float-left" title="Арифметические операции"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../condit/" class="btn btn-neutral float-right" title="Условные выражения и условные конструкции">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../arith/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../condit/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

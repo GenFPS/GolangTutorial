@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_2/function/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Функции - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u0424\u0443\u043d\u043a\u0446\u0438\u0438";
+        var mkdocs_page_input_path = "chapter_2\\function.md";
+        var mkdocs_page_url = "/chapter_2/function/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/var/">Переменные</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/typeOf/">Типы данных</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/const/">Константы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/condit/">Условные выражения и условные конструкции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/array/">Массивы и срезы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/cicle/">Циклы</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Функции</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Параметры функции</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Неопределенное количество параметров</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Возвращение результата из функции</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">Возвращение нескольких значений</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pointers/">Указатели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../packages/">Пакеты</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 2. Функции, пакеты и другое &raquo;</li>
+      <li>Функции</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Функции</h1>
+<p>Функция (или ее еще иногда называют подпрограмма) — фрагмент программного кода, который выполняют определенную задачу. Функции нужны для того, чтобы заметно упрощать и сокращать программный код и адаптировать его для разных задач.</p>
+<p>Объявление функции в Go выглядит следующим образом:</p>
+<pre><code>func имя_функции (список_параметров) (типы_возвращаемых_значений) {
+    тело_функции
+}
+</code></pre>
+<p>Функция объявляется с помощью ключевого слова <strong>func</strong>, затем идет имя самой функции. После этого в круглых скобках идет список передаваемых параметров на вход функциию. После списка параметров определяются типы тех значений, которые возвращает функция. И затем, уже в самих фигурных скобках идет программный код, в котором могут быть перменные, условные операторы, циклы и даже другие функции. Пример самы простых функций:</p>
+<pre><code>func main() {
+    fmt.Println(&quot;Hello there&quot;)
+}
+
+func Grievous() {
+    fmt.Println(&quot;General Kenobi...&quot;)
+}
+</code></pre>
+<p>Функцию можно вызывать. В примере выше мы создали функцию <code>Grievous()</code>, которая выводит сообщение в консоль <code>General Kenobi...</code> при вызове. Для того чтобы вызвать созданную функцию нужно обозначить ее в main() функции:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    fmt.Println(&quot;Hello there&quot;)  // Hello there
+    Grievous()                  // General Kenobi...
+}
+
+func Grievous() {
+    fmt.Println(&quot;General Kenobi...&quot;)
+}
+</code></pre>
+<p>Это пример самых простых функции в Go. И не забываем, что каждая программа на языке Go должна содержать как минимум одну функцию - <code>main()</code>, т.к. она является входной точной для других функций.</p>
+<h2 id="_2">Параметры функции</h2>
+<p>Однако, в практике простые функции без параметров мало кто использует. Параметры являются входными данными для функции. Они указываются в скобкаъ после имени самой функции. Для каждого параметра указывается его имя и тип. Если параметров несколько, то они разделятся друг от друга запятыми. При каждом вызове таких функций мы должны передавать значения для всех обозначенных параметров. Создадим функцию, которая суммирует два числа:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+
+func sumOf2(a int, b int) {
+    fmt.Println(a + b)
+}
+
+func main() {
+    sumOf2(5, 10)   // 15
+    sumOf2(2, 3)    // 5
+}
+</code></pre>
+<p>Функция <strong>sumOf2</strong> имеет два параметра - <code>a</code> и <code>b</code>. Оба параметра представляют тип int. В самом теле функции мы складываем <code>a</code> и <code>b</code>. После вызова этой функции на консоль выводится сумма этих чисел.</p>
+<p>Кстати, если несколько параметров имеют одинаковый тип данных, то его можно указать один, но после последнего параметра этого типа:</p>
+<pre><code>func sumOf2(a, b int) {
+    fmt.Println(a + b)
+}
+</code></pre>
+<h2 id="_3">Неопределенное количество параметров</h2>
+<p>В Go функция может принимать неопределенное количество параметров одного типа. Например, нам надо получить сумму чисел, однако мы точно не знаем, сколько чисел будут переданы в функцию:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func infinSum(numbers ...int) {
+    sum := 0
+
+    for _, numb := range numbers {
+        sum += numb
+    }
+    fmt.Println(sum)
+}
+
+func main() {
+    infinSum(5, 10) // 15
+    infinSum(5, 10, 15, 20) // 50
+    infinSum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) // 55
+}
+</code></pre>
+<p>Для определения параметра, который представляет неопределенное количество значений ставится многоточие - numbers <strong>...int</strong>. Т.е. через подобный параметр мы получаем несколько значений типа <strong>int</strong>.</p>
+<h2 id="_4">Возвращение результата из функции</h2>
+<p>Функции могут возвращать результат. Для этого нужно после списка параметров функции указать тип возвращаемого результата. А в теле функции в этом случае необходимо использовать оператор <code>return</code>, после которого указывается возвращаемое значение:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+
+func sumOf2(a, b int) int {
+    return a + b
+}
+
+func main() {
+    fmt.Println(sumOf2(4, 4))   // 8
+}
+</code></pre>
+<p>Возвращаемый результат может быть именован:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+
+func sumOf2(a, b int) (z int) {
+    z = a + b
+    return z
+}
+
+func main() {
+    fmt.Println(sumOf2(7, 4))   // 11
+}
+</code></pre>
+<p>В скобках после списка параметров фактически определяется переменная, значение которой будет возвращаться.</p>
+<h3 id="_5">Возвращение нескольких значений</h3>
+<p>В язык Go существует возможность возвращать несколько значений. В данном случае после списка параметров указывается в скобках список типов возвращаемого значения. После оператора <code>return</code> мы также перечеслем именно те типы возвращаемых значений (через запятую), которые мы указали в скобках после списка параметров:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+
+func userInfo(age int, fitstName, lastName string) (int, string) {
+    fullName := fitstName + &quot; &quot; + lastName
+    return age, fullName
+}
+
+func main() {
+    fmt.Println(userInfo(40, &quot;Homer&quot;, &quot;Simpson&quot;))   // 40 Homer Simpson
+}
+</code></pre>
+<p>Функция <strong>userInfo</strong> принимает 3 параметра: число и две строки. Возвращает число и строку. Возвращаемые значения указаны после оператора <code>return</code>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../chapter_1/cicle/" class="btn btn-neutral float-left" title="Циклы"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../pointers/" class="btn btn-neutral float-right" title="Указатели">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../chapter_1/cicle/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../pointers/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

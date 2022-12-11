@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_1/array/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Массивы и срезы - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041c\u0430\u0441\u0441\u0438\u0432\u044b \u0438 \u0441\u0440\u0435\u0437\u044b";
+        var mkdocs_page_input_path = "chapter_1\\array.md";
+        var mkdocs_page_url = "/chapter_1/array/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../var/">Переменные</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../typeOf/">Типы данных</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../const/">Константы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../condit/">Условные выражения и условные конструкции</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Массивы и срезы</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Массивы</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">Индексы</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Срезы</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">Создание среза</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">Добавление в срез</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">Оператор среза</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">Удаление элемента в срезе</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#make">Функция make()</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#copy">Функция copy()</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cicle/">Циклы</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/function/">Функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/pointers/">Указатели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/packages/">Пакеты</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 1. Основы языка Go &raquo;</li>
+      <li>Массивы и срезы</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Массивы и срезы</h1>
+<h2 id="_2">Массивы</h2>
+<p>Массивы — это упорядоченный набор элементов определенного типа фиксированной длины. Объявление массива осуществляется следующим образом:</p>
+<pre><code>var array [3]int
+fmt.Println(array)  // [0 0 0]
+</code></pre>
+<p>При объявлении массива в квадратных скобках указывается его длина (length), которая совместно с типом элементов, определяет тип самого массива. Набор элементов в массиве строго типизированный — это означает, что в одном массиве не могут содержаться разные элементы типов (т.е. в массив <strong>int</strong>'ов нельзя добавить элемент <strong>string</strong> и наоборот).</p>
+<p>Как мы увидели в приведенном примере, объявленный массив был при объявлении инициализирован нулевыми значениями (0 для int). В случае объявления масссива типа <strong>string</strong> данный массив будет вовсе пустой:</p>
+<pre><code>var arrOfStr [1]string
+fmt.Println(arrOfStr)   // []
+</code></pre>
+<p>Конечно же можно и во время объявления массива сразу инициализировать его элементы:</p>
+<pre><code>var array [3]int = [3]int{1, 2, 3}
+</code></pre>
+<p>Обратите внимание, что значения передаются в фигурных скобках через запятую. При этом значений не может быть больше длины массива! Получается, что в данном случае длина массива равна 3,следовательно, нельзя в фигурных скобках определить больше пяти элементов. Однако, можно определить меньшее количество элементов:</p>
+<pre><code>var array [3]int = [3]int{1}
+fmt.Println(array)  // [1 0 0]
+</code></pre>
+<p>Таким образом, элементы, для которых не указано значение, будут иметь значение по умолчанию.</p>
+<p>Также можно скоращенно определять переменные массива:</p>
+<pre><code>elements := [4]int{1, 2, 3, 4}
+</code></pre>
+<p>Если в квадратных скобках вместо длины указано троеточие, то длина массива определяется, исходя из количества переданных ему элементов:</p>
+<pre><code>elements1 := [...]int{1, 2, 3, 4}
+elements2 := [...]int{1, 2, 3, 4, 5, 6}
+
+fmt.Println(len(elements1))  // 4
+fmt.Println(len(elements2))  // 6
+</code></pre>
+<p><em>Примечание: len() — это функция, которая возвращает длину входного параметра (будто массив, срез или даже строка). Подробно о функциях будет сказано в Главе 2</em>.</p>
+<p>При этом следует учитывать тот факт, что длина массива является частью его типа. Так, например, <code>elements1</code> и <code>elements2</code> представляют разные типы данных, хотя они и хранят данные одного типа.</p>
+<h3 id="_3">Индексы</h3>
+<p>Для обращения к элементам массива применяются индексы - номера элементов, т.е. по индексу можно получить значение элемента, либо изменить его. В Go (как и почти во всех других языках программирования) нумерация элементов массива начинается с нуля, то есть первый элемент будет иметь порядковый нидекс 0. Индексы указываются в квадратных скобка:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbersOfInts [4]int = [4]int{1,2,3,4}
+
+    fmt.Println(numbersOfInts[0])     // 1
+    fmt.Println(numbersOfInts[3])     // 4
+
+    numbersOfInts[0] = 100
+
+    fmt.Println(numbersOfInts[0])     // 100
+    fmt.Println(numbersOfInts)        // [100 2 3 4]
+}
+</code></pre>
+<h2 id="_4">Срезы</h2>
+<p>Срезы — это последовательность элементов одного типа <strong>переменной длины</strong> (ключевое отличие от массива). По сравнению с массивами, в срезах длина не фиксирована и в ходе выполнения программы она может меняться, то есть можно добавлять или удалять элементы среза.</p>
+<p>Каждый срез содержит в себе три компонента информации — указателя,длины и емкости:</p>
+<ul>
+<li>указатель на первый элемент массива, доступный через срез;</li>
+<li>длина (length), которая определяет количество элементов, которые содержатся в срезе данный момент. Длина среза может быть определена при помоци встроенной функции len();</li>
+<li>емкость (capacity), которая определяет количество выделенных ячеек для среза.</li>
+</ul>
+<p><em>Примечание от автора: тема с аллоцированием памяти среза и массива очень сложная для новичков, так как данная тема непосредственно связана с указателями (которые будут рассмотрены во второй главе) и работой памяти компьютера в целом (т.е. что такое память, классификации памяти, адрес, виды адресаций и т.п.). Поэтому для полного понимания и усвоения данной темы рекомендую сначала ознакомиться с данным <a href="https://www.youtube.com/watch?v=Wh22_O8jXVQ">видео</a>, затем усвоить тему с <a href="../../chapter_2/pointers/">указателями</a> и только потом можно будет приступать к изучению аллоцирования памяти <a href="https://habr.com/ru/company/otus/blog/465613/">массивов и срезов</a>.</em></p>
+<h3 id="_5">Создание среза</h3>
+<p>Срез определяется также, как и массив, за исключением того факта, что у среза не указывается длина:</p>
+<pre><code>var numbers []int
+</code></pre>
+<p>Можно и сразу иницилизировать значения среза:</p>
+<pre><code>var numbers = []int{1, 2, 3, 4}
+</code></pre>
+<p>Или таким образом:</p>
+<pre><code>numbers := []int{1, 2, 3, 4}
+</code></pre>
+<p>К элементам среза обращение происходит также, как и к элементам массива, т.е. по индексу:</p>
+<pre><code>var numbers = []int{1, 2, 3, 4}
+fmt.Println(numbers[2])     // 3
+</code></pre>
+<h3 id="_6">Добавление в срез</h3>
+<p>Для добавления в срез применяется встроенная функция <strong>append()</strong>, которая имеет следующий вид:</p>
+<pre><code>append(slice, value)
+</code></pre>
+<p>Первый параметр функции <strong>apend()</strong> - срез, в который надо добавить, а второй параметр - значение, которое нужно добавить. Результатом функции является увеличенный срез:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbers = []int{1, 2, 3, 4}
+    numbers = append(numbers, 5)
+
+    fmt.Println(numbers)    // [1 2 3 4 5]
+}
+</code></pre>
+<p>Можно добавлять сразу несколько элементов в срез:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbers = []int{1, 2, 3, 4}
+    numbers = append(numbers, 5, 6, 7)
+
+    fmt.Println(numbers)    // [1 2 3 4 5 6 7]
+}
+</code></pre>
+<p>Также с помощью операторы <strong>...</strong> можно объединять два среза в один или элементы одного среза добавить в другой срез:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbers1 = []int{1, 2, 3, 4}
+    var numbers2 = []int{5, 6, 7}
+
+    numbers1 = append(numbers1, numbers2...)
+
+    fmt.Println(numbers1)   // [1 2 3 4 5 6 7]
+}
+</code></pre>
+<h3 id="_7">Оператор среза</h3>
+<p>Оператор среза <strong>slice[i:j]</strong> создает из последовательности <strong>slice</strong> новый срез, который содержит элементы последовательности slice с i по j-1 (j не включительно!). При этом должно соблюдаться условие 0 &lt;= i &lt;= j &lt;= cap(s). В качестве исходной последовательности, из которой берутся элементы, может использоваться массив, указатель на массив или другой срез. В итоге в полученном срезе будет j-i элементов:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbers1 = [7]int{1, 2, 3, 4, 5, 6, 7} // это массив
+    var numbers2 = numbers1[1:5]    // а это слайс, который ссылается на массив.
+
+    fmt.Println(numbers2)   // [2 3 4 5] // элемент 6 не включен в данный слайс, т.к. последовательность элементов слайса идут с i по j-1
+}
+</code></pre>
+<p>Если значение i не указано, то применяется по умолчанию значение 0 (т.е. стартовый элемент исходного массива/среза). Если значение j не указано, то вместо него используется длина исходной последовательности массива/среза:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbers1 = [7]int{1, 2, 3, 4, 5, 6, 7}
+    var numbers2 = numbers1[:3]
+    var numbers3 = numbers1[3:]
+
+    fmt.Println(numbers2)   // [1 2 3]
+    fmt.Println(numbers3)   // [4 5 6 7]
+}
+</code></pre>
+<h3 id="_8">Удаление элемента в срезе</h3>
+<p>К сожалению, в Go отсутствует встроенная функция для удаления элемента из среза, но мы можем воспользоваться встроенной функцией <strong>append()</strong> для того, чтобы создать новый срез, включающий в себя срез элементов до игнорируемого элемента, а также все элементы после игнорируемого. Например, мы хотим убрать значение <code>4</code> в исходном массиве:</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    var numbers1 = [7]int{1, 2, 3, 4, 5, 6, 7}
+    numbers2 := append(numbers1[:3], numbers1[4:]...)
+
+    fmt.Println(numbers2)   // [1 2 3 5 6 7]
+}
+</code></pre>
+<h3 id="make">Функция make()</h3>
+<p>Существует встроенная функция <strong>make()</strong>, которая может содержать до 3-х параметров (тип, длина и емкость):</p>
+<pre><code>make([]T, len(), cap())
+</code></pre>
+<p>Чтобы разобраться с этой функцией нам нужно посмотреть, что происходит при создании среза. Количество элементов, что видны в срезе определяют ее длину (len()):</p>
+<pre><code>package main
+
+import &quot;fmt&quot;
+
+func main() {
+    var numbers1 = [7]int{1, 2, 3, 4, 5, 6, 7}
+    var numbers2 = numbers1[:3]
+
+    fmt.Println(numbers2)       // [1 2 3]
+    fmt.Println(len(numbers2))  // 3
+}
+</code></pre>
+<p>Как мы уже знаем, у слайса есть базовый массив или срез, на который он может ссылаться. В данном примере <strong>срез</strong> <code>numbers2</code> ссылается на <strong>массив</strong> <code>numbers1</code>. Если с параметрами тип ([]T) и длина (len()) уже понятно, то параметр емкость (cap()) показывает возможность добавления элементов в <strong>срез</strong> <code>numbers2</code> без необходимости выделения нового массива, на который будет ссылаться <code>numbers2</code>, если превысить показатель параметра емкости для среза <code>numbers2</code>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbers1 = [7]int{1, 2, 3, 4, 5, 6, 7}
+    var numbers2 = numbers1[:3]
+
+    fmt.Println(numbers2)       // [1 2 3]
+    fmt.Println(len(numbers2))  // 3
+    fmt.Println(cap(numbers2))  // 7
+}
+</code></pre>
+<p>Т.е., исходя из примера, можно сказать что емкость для среза <code>numbers2</code> это длина массива <code>numbers1</code>, на который ссылается <code>numbers2</code>. Если превысить данный показатель, то создастся новый массив с удвоенной длинной (т.е. 14 вместо 7), на который будет ссылаться наш срез <code>numbers2</code>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbers1 = [7]int{1, 2, 3, 4, 5, 6, 7}
+    var numbers2 = numbers1[:3]
+
+    fmt.Println(numbers2)       // [1 2 3]
+    fmt.Println(len(numbers2))  // 3
+    fmt.Println(cap(numbers2))  // 7
+
+    numbers2 = append(numbers2, 4, 5, 6, 7, 8)
+
+    fmt.Println(numbers2)       // [1 2 3 4 5 6 7 8]
+    fmt.Println(len(numbers2))  // 8
+    fmt.Println(cap(numbers2))  // 14, так как мы превысили емкость, то &quot;внутри&quot; программы создался новый массив (мы его не видим) с длиной 14, на который ссылается срез numbers2
+}
+</code></pre>
+<p>Однако так делать крайне не рекомендуется, т.к. создание выделяется дополнительная память для программы, которая, в свою очередб негативно сказывается на производительность программы в целом. Поэтому с помощью функции <strong>make()</strong> всегда нужно четко определять емкость того или иного среза.</p>
+<p>Таким образом, ключевое преимущество создания среза через <strong>make()</strong> в том, что предварительное выделение через <strong>make()</strong> может установить начальную вместимость, тем самым можно избежать дополнительных перемещений и копий для увеличения базового массива.</p>
+<h3 id="copy">Функция copy()</h3>
+<p>Встроенная функция copy копирует элементы в целевой срез <strong>dst</strong> из исходного среза <strong>src</strong>:</p>
+<pre><code>copy(dst, src []Type)
+</code></pre>
+<p>Данная функция возвращает число скопированных элементов:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var numbers1 = []int{1, 3, 4}
+    numbers2 := make([]int, 3)
+    countOfCopyEl := copy(numbers2, numbers1)
+
+    fmt.Println(numbers1)   // [1 3 4]
+    fmt.Println(numbers2)   // [1 3 4]
+    fmt.Println(countOfCopEl)   // 3 - количесвто скопированных элементов
+}
+</code></pre>
+<p>В данном примере мы явно указали длину создаваемого среза <strong>numbers2</strong>, т.к. при длине 1, был бы скопирован 1 элемент из среза <strong>numbers1</strong>.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../condit/" class="btn btn-neutral float-left" title="Условные выражения и условные конструкции"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cicle/" class="btn btn-neutral float-right" title="Циклы">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../condit/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cicle/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

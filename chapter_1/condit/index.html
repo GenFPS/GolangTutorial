@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_1/condit/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Условные выражения и условные конструкции - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u0423\u0441\u043b\u043e\u0432\u043d\u044b\u0435 \u0432\u044b\u0440\u0430\u0436\u0435\u043d\u0438\u044f \u0438 \u0443\u0441\u043b\u043e\u0432\u043d\u044b\u0435 \u043a\u043e\u043d\u0441\u0442\u0440\u0443\u043a\u0446\u0438\u0438";
+        var mkdocs_page_input_path = "chapter_1\\condit.md";
+        var mkdocs_page_url = "/chapter_1/condit/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../var/">Переменные</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../typeOf/">Типы данных</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../const/">Константы</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Условные выражения и условные конструкции</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Условные выражения</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">Операции отношения</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Логические операции</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Условные конструкции</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#if">Оператор if</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#else">Оператор else</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#else-if">Выражения else if</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#switch-case">Конструкция switch case</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#default">Оператор default</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fallthrough">Оператор fallthrough</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../array/">Массивы и срезы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cicle/">Циклы</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/function/">Функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/pointers/">Указатели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/packages/">Пакеты</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 1. Основы языка Go &raquo;</li>
+      <li>Условные выражения и условные конструкции</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Условные выражения и условные конструкции</h1>
+<h2 id="_2">Условные выражения</h2>
+<p>Условные выражения представляют операции отношения и логические операции. Про операции отношения и логические операции мы "вскольз" рассматривали на примере типа данных <strong>bool</strong>, так как они возвращают значение типа <strong>bool</strong>: <code>true</code> (если условие истинно) или <code>false</code> (если условие ложно).</p>
+<h3 id="_3">Операции отношения</h3>
+<p>Операции отношения позволяют сравнить два значения. В языке Go есть следующие операции отношения:</p>
+<p><code>==</code> — операция "равно"(не путать с операцией присваивания <code>=</code>!). Возвращает <strong>true</strong>, если оба операнда равны, и <strong>false</strong>, если они не равны:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var a int = 2
+    var b int = 4
+    var c bool = a == b
+
+    fmt.Println(c)      // false, так как 2 не равно 4
+}
+</code></pre>
+<p><code>&gt;</code> — операция "больше чем". Возвращает <strong>true</strong>, если первый операнд больше второго, и <strong>false</strong>, если первый операнд меньше второго или операнды равны:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var a int = 4
+    var b int = 2
+    var c bool = a &gt; b
+
+    fmt.Println(c)      // true
+}
+</code></pre>
+<p><code>&lt;</code> — операция "меньше чем". Возвращает <strong>true</strong>, если первый операнд меньше второго, и <strong>false</strong>, если первый операнд больше второго или операнды равны:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var a int = 4
+    var b int = 2
+    var c bool = a &lt; b
+
+    fmt.Println(c)      // false
+}
+</code></pre>
+<p><code>&gt;=</code> — операция "больше или равно". Возвращает <strong>true</strong>, если первый операнд больше или равен второму, и <strong>false</strong>, если первый операнд меньше второго:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var a int = 4
+    var b int = 4
+    var c int = 3
+
+    var d bool = a &gt;= b
+    var e bool = a &gt;= c
+
+    fmt.Println(d, e)      // true true
+}
+</code></pre>
+<p><code>&lt;=</code> — Операция "меньше или равно". Возвращает <strong>true</strong>, если первый операнд меньше или равен второму, и <strong>false</strong>, если первый операнд больше второго:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var a int = 4
+    var b int = 4
+    var c int = 5
+
+    var d bool = a &lt;= b
+    var e bool = a &lt;= c
+
+    fmt.Println(d, e)      // true true
+}
+</code></pre>
+<p><code>!=</code> — операция "не равно". Возвращает <strong>true</strong>, если первый операнд не равен второму, и <strong>false</strong>, если оба операнда равны:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var a int = 4
+    var b int = 2
+    var c int = 4
+
+    var d bool = a != b
+    var e bool = a != c
+
+    fmt.Println(d, e)      // true false
+}
+</code></pre>
+<h3 id="_4">Логические операции</h3>
+<p>Про логические операции было сказано в теме <a href="../typeOf/"><strong>Типы данных</strong></a> раздел <strong>Тип bool</strong>.</p>
+<h2 id="_5">Условные конструкции</h2>
+<p>Условные выражения являются неотъемлемой частью каждого языка программирования. Условные выражения позволяют создавать код, который будет или не будет выполняться в зависимости от условий в программе на момент запуска.</p>
+<h3 id="if">Оператор if</h3>
+<p>Оператор <code>if</code> оценивает истинность утверждения и если это утверждение - истина, то запускается следующая часть кода:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+   a := 7
+   b := 7
+
+   if a &lt; b {
+      fmt.Println(&quot;a меньше, чем b&quot;)
+  }
+}
+// программа не выполнится, так как a не меньше чем b
+</code></pre>
+<p>Условие ставится после оператора <code>if</code>. В данном случае проверяется, меньше ли значение переменной <strong>a</strong>, чем значние переменой <strong>b</strong>. Так как в данном случае значение переменной <strong>a</strong> не меньше значения переменной <strong>b</strong>, то есть условие возвращает <strong>false</strong>, то следующий кусок кода (<code>fmt.Println("a меньше, чем b"</code>) проигнорируется.</p>
+<h3 id="else">Оператор else</h3>
+<p>Однако, можно задать альтернативную логику, которая выполняется, в случае если условие неверно, то добавляется выражение <strong>else</strong>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+   a := 7
+   b := 7
+
+   if a &lt; b {
+       fmt.Println(&quot;a меньше b&quot;)
+  } esle:
+       fmt.Println(&quot;а не меньше b&quot;)
+}
+</code></pre>
+<p>Таким образом, если условное выражение после оператора if истинно, то выполняется блок после if, если ложно - выполняется блок после else.</p>
+<h3 id="else-if">Выражения else if</h3>
+<p>Если необходимо проверить несколько альтернативных вариантов, то можно добавить выражения else if:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+   a := 7
+   b := 7
+
+   if a &lt; b {
+       fmt.Println(&quot;a меньше b&quot;)
+    } esle if a == b{
+       fmt.Println(&quot;а равно b&quot;)
+    } else {
+       fmt.Println(&quot;а больше b&quot;)
+    }
+}
+</code></pre>
+<p>Если выражение после <strong>if</strong> истинно, то срабатывает блок <strong>if</strong>. Иначе проверяется выражение после <strong>else if</strong>. Если оно истинно, то выполняется блок <strong>else if</strong>. Если оно ложно, то выполняется уже блок <strong>else</strong>.</p>
+<p>Конструкцию <strong>else if</strong> можно использоваеть неограниченное количество раз:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+   a := 7
+   b := 7
+
+   if a == 7 {
+       fmt.Println(&quot;a равно 7&quot;)
+    } else if b == 7{
+       fmt.Println(&quot;b равно 7&quot;)
+    } else if a == b{
+       fmt.Println(&quot;а равно b&quot;)
+    }
+}
+</code></pre>
+<h2 id="switch-case">Конструкция switch case</h2>
+<p>В языке Go также существует оператор <strong>switch</strong>, который проверяет значение выражения и с помощью оператора <strong>case</strong> определяются значения для сравнения. Если это значение совападает со значением выражения из <strong>switch</strong>, то выполняется код данного блока <strong>case</strong>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    a := 1
+    switch a {
+        case 0:
+            fmt.Println(&quot;a равно 0&quot;)
+        case 1:
+            fmt.Println(&quot;a равно 1&quot;)    // выполнится этот блок
+        case 2:
+            fmt.Println(&quot;a равно 2&quot;)
+    }
+}
+</code></pre>
+<p>А вот так бы выглядел код с использованием кострукций <strong>if/else if</strong>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    a := 1
+    if a == 0 {
+        fmt.Println(&quot;a равно 0&quot;)
+    } else if a == 1 {
+        fmt.Println(&quot;a равно 1&quot;)
+    } else if a == 2 {
+        fmt.Println(&quot;a равно 2&quot;)
+    }
+}
+</code></pre>
+<p>Можно сказать, что второй вариант выглядит болеее громоздко.</p>
+<h3 id="default">Оператор default</h3>
+<p>Помимо этого конструкция <strong>switch</strong> может содержать блок <strong>default</strong>, который выполняется, если ни один из операторов case не содержит нужного значения:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    a := 3
+    switch a {
+        case 0:
+            fmt.Println(&quot;a равно 0&quot;)
+        case 1:
+            fmt.Println(&quot;a равно 1&quot;)
+        case 2:
+            fmt.Println(&quot;a равно 2&quot;)
+        default:
+            fmt.Println(&quot;a больше или равно 3&quot;)
+    }
+}
+</code></pre>
+<p>Данный блок не является обязательным, однако он выполняется в случае если не один из <strong>case</strong>'ов не подошел под условие <strong>switch</strong>. По сути оператор <strong>default</strong> является аналогом <strong>else</strong>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    a := 3
+    if a == 0 {
+        fmt.Println(&quot;a равно 0&quot;)
+    } else if a == 1 {
+        fmt.Println(&quot;a равно 1&quot;)
+    } else if a == 2 {
+        fmt.Println(&quot;a равно 2&quot;)
+    } else {
+        fmt.Println(&quot;a больше или равно 3&quot;)
+    }
+}
+</code></pre>
+<h3 id="fallthrough">Оператор fallthrough</h3>
+<p>Мы выяснили, что если определенный <strong>case</strong> удовлетворяет условию <strong>switch</strong>, то блок кода под этим <strong>case</strong> выполняется и программа на этом завершается. Однако, бывают и такие ситуации, когда нам нужно, чтобы и следующие блоки кода были выполнены, после того, как выполнится истинное условие <strong>case</strong>. Для этого существует оператор <strong>fallthrough</strong>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    a := 1
+    switch a {
+        case 0:
+            fmt.Println(&quot;a равно 0&quot;)
+        case 1:
+            fmt.Println(&quot;a равно 1&quot;)    // выполнится, так как это истина
+            fallthrough
+        case 2:
+            fmt.Println(&quot;a равно 2&quot;)    // выполнится из-за fallthrough
+            fallthrough
+        default:
+            fmt.Println(&quot;a больше или равно 3&quot;) // также выполнится из-за fallthrough
+    }
+}
+</code></pre>
+<p>Однако, стоит учесть и тот факт, что если поставить оператор <strong>fallthrough</strong> выше "истинного" <strong>case</strong>'а, то <strong>fallthrough</strong> не сработает:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    a := 2
+    switch a {
+        case 0:
+            fmt.Println(&quot;a равно 0&quot;)
+            fallthrough                 // fallthrough не сработает
+        case 1:
+            fmt.Println(&quot;a равно 1&quot;)
+            fallthrough                // fallthrough также не сработает
+        case 2:
+            fmt.Println(&quot;a равно 2&quot;)
+            fallthrough               // сработает только в этом случае, т.к. данный case - истина
+        default:
+            fmt.Println(&quot;a больше или равно 3&quot;)
+    }
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../const/" class="btn btn-neutral float-left" title="Константы"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../array/" class="btn btn-neutral float-right" title="Массивы и срезы">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../const/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../array/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

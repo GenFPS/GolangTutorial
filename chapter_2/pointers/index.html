@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_2/pointers/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Указатели - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u0423\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u0438";
+        var mkdocs_page_input_path = "chapter_2\\pointers.md";
+        var mkdocs_page_url = "/chapter_2/pointers/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/var/">Переменные</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/typeOf/">Типы данных</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/const/">Константы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/condit/">Условные выражения и условные конструкции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/array/">Массивы и срезы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/cicle/">Циклы</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../function/">Функции</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Указатели</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Оператор разименования</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Пустые указатели</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#new">Функция new</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../packages/">Пакеты</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 2. Функции, пакеты и другое &raquo;</li>
+      <li>Указатели</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Указатели</h1>
+<p>Указатели — это переменные, которые указывают на адрес других переменных. Они объявляются почти как обычные переменные, за исключение, что перед типом данных ставится символ звездочки <code>*</code>. Например, определение указателя на объект типа <strong>int</strong>:</p>
+<pre><code>var ptr *int
+</code></pre>
+<p>Данному указателю можно присвоить адрес переменной типа <strong>int</strong>. Для получение адреса применяется операция <strong>&amp;</strong>, после которой указывается имя переменной (<strong>&amp;a</strong>):</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var a int = 1       // определяем переменную
+    var ptr *int          // определяем указатель
+
+    ptr = &amp;a              // указатель получает адрес переменной
+    fmt.Println(ptr)      // значение самого указателя - адрес переменной a
+}
+</code></pre>
+<p>В данном примере указатель <strong>ptr</strong> хранит адрес переменной <strong>a</strong>. Что важно, переменная <strong>a</strong> имеет тип <strong>int</strong>, и указатель <strong>ptr</strong> указывает именно на объект типа <strong>int</strong>. То есть должно быть соответствие по типу. И если мы попробуем вывести адрес переменной на консоль, то увидим, что он представляет шестнадцатеричное значение:</p>
+<pre><code>0xc0000a6058
+</code></pre>
+<p>В каждом случае адрес может отличаться, но в текущем примере, машинный адрес переменной <strong>a</strong> - <code>0xc0000a6058</code>. Таким образом, в памяти комьютера есть адрес <code>0xc0000a6058</code> по которому распологается переменная <strong>a</strong>.</p>
+<p><img alt="" height="200" src="../../src/Chap2Ptr.png" style="display: block; margin: 0 auto" width="300" /></p>
+<h2 id="_2">Оператор разименования</h2>
+<p>По адресу, который хранит указатель, мы получить значение переменной <strong>a</strong>. Для этого применяется операция <code>*</code> (операция разыменования). Результатом этой операции является значение переменной, на которую назначен указатель. Если мы применим эту операцию, то получим значение переменной <strong>a</strong>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var a int = 1
+    var ptr *int = &amp;a
+
+    fmt.Println(&quot;Адрес переменной а:&quot;, ptr)     // Адрес переменной а: 0xc000018088
+    fmt.Println(&quot;Значение переменной а:&quot;, *ptr) // Значение переменной а: 1
+</code></pre>
+<p>Более того, через указатель с помощью оператора разименования мы можем изменить значение переменной, на который указывает наш <code>ptr</code>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var a int = 1
+    var ptr *int = &amp;a
+
+    *ptr = 5
+    fmt.Println(&quot;Значение переменной а:&quot;, a)    // Значение переменной а: 5
+}
+</code></pre>
+<p>Также при объявлении указетеля, можно использовать сокразенную форму:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var b int = 2
+    ptr := &amp;b
+
+    fmt.Println(&quot;Адрес b:&quot;, ptr)        // Адрес b: 0xc000018088
+    fmt.Println(&quot;Значение b:&quot;, *ptr)    // Значение b: 2
+}
+</code></pre>
+<h2 id="_3">Пустые указатели</h2>
+<p>В случае, есил указателю не присвоить адрес какой-либо переменной (или любого другого объекта), то он будет иметь пустое значение (<strong>nil</strong>). При попытке получить значение такого указателя мы получим ошибку:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var ptr *string
+
+    fmt.Println(&quot;Значение:&quot;, *ptr)  // runtime error: invalid memory address or nil pointer dereference
+}
+</code></pre>
+<p>Чтобы избежать этой ошибки в Go часто используют следующую коснтрукцию, которая проверяет указатель на наличие адреса:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var ptr *string
+
+    if ptr != nil {
+        fmt.Println(&quot;Значение:&quot;, *ptr)
+    } else {
+        fmt.Println(&quot;Указатель ptr имеет nil значение!&quot;)
+    }
+}
+</code></pre>
+<h2 id="new">Функция new</h2>
+<p>Встроенная функция new выделяет память (создает неименованную переменную и возваращет указатель на ее значение). В эту функцию передается тип, объект которого надо создать. Функция возвращает указатель на созданный объект:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    ptr := new(int)
+
+    fmt.Println(&quot;Адрес:&quot;, ptr)  // Адрес: 0xc0000a6058
+    fmt.Println(&quot;Значение до присвоения:&quot;, *ptr)    // Значение до присвоения: 0
+
+    *ptr = 10
+    fmt.Println(&quot;Значение после присвоения:&quot;, *ptr) // Значение после присвоения: 10
+}
+</code></pre>
+<p>В этом примере указатель ptr будет иметь тип <code>*int</code>, поскольку он указывает на объект типа <code>int</code>. Созданный объект <code>ptr</code> имеет значение по умлочанию (для <code>int</code> это 0).</p>
+<p>По сути, объект, созданный с помощью функции <strong>new()</strong>, ничем не отличается от обычной переменной. Единственное что, чтобы обратиться к этому объекту, наприме, получить или изменить его адрес, необходимо использовать указатель.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../function/" class="btn btn-neutral float-left" title="Функции"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../packages/" class="btn btn-neutral float-right" title="Пакеты">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../function/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../packages/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
