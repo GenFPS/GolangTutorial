@@ -1,7 +1,8 @@
 site_name: Golang Tutorial
 site_url: https://golangtutorial.com/
 nav:
-  - Home: index.md
+  - Home: 
+      - Введение: index.md
   - Глава 1. Основы языка Go:
       - Первая программа: chapter_1/firstProg.md
       - Переменные: chapter_1/var.md
@@ -12,7 +13,9 @@ nav:
       - Массивы и срезы: chapter_1/array.md
       - Циклы: chapter_1/cicle.md
   - Глава 2. Функции, пакеты и другое:
-      - Work still in progress: chapter_2/function.md
+      - Функции: chapter_2/function.md
+      - Указатели: chapter_2/pointers.md
+      - Пакеты: chapter_2/packages.md
 theme: readthedocs
 markdown_extensions:
     - extra
