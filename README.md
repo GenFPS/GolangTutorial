@@ -1,6 +1,7 @@
 # Руководство по Golang
 
 Данное руководство предназначено для тех, кто изучает программировани и хочет познакомиться с азами языка программирования Golang (Go).
+[GolangTutorial](https://genfps.github.io/GolangTutorial/)
 
 ![](docs/src/Index.png)
 
