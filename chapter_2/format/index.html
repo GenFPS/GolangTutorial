@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_2/format/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Форматированный вывод - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u0424\u043e\u0440\u043c\u0430\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439 \u0432\u044b\u0432\u043e\u0434";
+        var mkdocs_page_input_path = "chapter_2\\format.md";
+        var mkdocs_page_url = "/chapter_2/format/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/var/">Переменные</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/typeOf/">Типы данных</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/const/">Константы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/condit/">Условные выражения и условные конструкции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/array/">Массивы и срезы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/cicle/">Циклы</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../function/">Функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../pointers/">Указатели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../packages/">Пакеты</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Форматированный вывод</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 3. Map, интерфесы, и другое</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_3/map/">Мапы (отображения)</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 2. Функции, пакеты и другое &raquo;</li>
+      <li>Форматированный вывод</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Форматированный вывод</h1>
+<p>Ряд возможностей для вывода и не только предоставляет пакет <a href="https://pkg.go.dev/fmt">fmt</a>. До этого мы использовали только <code>Print</code> и <code>Println</code>. Однако, бывают ситуации, когда нам понадобится вывести, допустим у числа float64 только 2 знака после запятой. Подобные операции удобно делать через функцию Printf:</p>
+<pre><code>package main
+import (
+    &quot;fmt&quot;
+    &quot;math&quot;
+)
+
+
+func main() {
+    fmt.Println(math.Pi)
+    fmt.Printf(&quot;%.2f&quot;, math.Pi)
+}
+</code></pre>
+<p>Для чисел с плавающей точкой можно указать точность или количество символов в дробной части. Для этого количество символов указывается после точки: <code>%.2f</code> означает, что выведутся только две цифры после точки. Существуют и другие варианты форматирования чисел с плавающей точкой:</p>
+<ul>
+<li><code>%f</code>: точность и ширина значения по умолчанию</li>
+<li><code>%5f</code>: ширина - 5 символов и точность по умолчанию</li>
+<li><code>%.2f</code>: ширина по умолчанию и точность - 2 символа</li>
+<li><code>%5.2f</code>: ширина - 5, точность - 2</li>
+<li><code>%5.f</code>: ширина - 5, точность - 0</li>
+</ul>
+<p><code>%f</code> - один из многих спейификаторов форматирования. Существуют множество других спецификаторов, каждый из которых представляет набор символов, которые интерпретируются определенным образом и обозначаются занком процента <code>%</code>. Примеры спецификаторова следующие:</p>
+<ul>
+<li><code>%t</code>: для вывода значений типа <strong>bool</strong> (<code>true</code> или <code>false</code>)</li>
+<li><code>%b</code>: для вывода целых чисел в двоичной системе</li>
+<li><code>%c</code>: для вывода символов, представленных числовым кодом</li>
+<li><code>%d</code>: для вывода целых чисел в десятичной системе (<strong>int</strong>)</li>
+<li><code>%o</code>: для вывода целых чисел в восьмеричной системе</li>
+<li><code>%q</code>: для вывода символов в одинарных кавычках</li>
+<li><code>%x</code>: для вывода целых чисел в шестнадцатиричной системе, буквенные символы числа имеют нижний регистр <strong>a-f</strong></li>
+<li><code>%X</code>: для вывода целых чисел в шестнадцатиричной системе, буквенные символы числа имеют верхний регистр <strong>A-F</strong></li>
+<li><code>%U</code>: для вывода символов в формате кодов Unicode, например, U+1234</li>
+<li><code>%e</code>: для вывода чисел с плавающей точкой в экспоненциальном представлении, например, -1.234456e+78</li>
+<li><code>%E</code>: для вывода чисел с плавающей точкой в экспоненциальном представлении, например, -1.234456E+78</li>
+<li><code>%f</code>: для вывода чисел с плавающей точкой, например, 123.456</li>
+<li><code>%F</code>: аналог <code>%f</code></li>
+<li><code>%s</code>: для вывода строки</li>
+<li><code>%p</code>: дла вывода значения укзателя (шестнадцатиричного адреса)</li>
+</ul>
+<p>Существет и универсальный спецификатор <code>%v</code>, который для типа <strong>bool</strong> аналогичен <code>%t</code>, для целочисленных типов - <code>%d</code>, для чисел с плавающей точной - <code>%g</code>, для строк - <code>%s</code>.</p>
+<p>Примеры использования:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+
+func main() {
+    var BigNumInt int64 = 100500
+    var BigNumFloat float64 = 100500.100500
+    var word string = &quot;word&quot;
+
+    fmt.Printf(&quot;This is a big num integer: %d\n&quot;, BigNumInt)
+    fmt.Printf(&quot;This is a cut version of big num float: %.2f\n&quot;, BigNumFloat)
+    fmt.Printf(&quot;This is just a word: %s&quot;, word)
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../packages/" class="btn btn-neutral float-left" title="Пакеты"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../chapter_3/map/" class="btn btn-neutral float-right" title="Мапы (отображения)">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../packages/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../chapter_3/map/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

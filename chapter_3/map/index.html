@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://golangtutorial.com/chapter_3/map/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Мапы (отображения) - Golang Tutorial</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041c\u0430\u043f\u044b (\u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f)";
+        var mkdocs_page_input_path = "chapter_3\\map.md";
+        var mkdocs_page_url = "/chapter_3/map/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Golang Tutorial
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Home</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Введение</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 1. Основы языка Go</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/firstProg/">Первая программа</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/var/">Переменные</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/typeOf/">Типы данных</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/arith/">Арифметические операции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/const/">Константы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/condit/">Условные выражения и условные конструкции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/array/">Массивы и срезы</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_1/cicle/">Циклы</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 2. Функции, пакеты и другое</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/function/">Функции</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/pointers/">Указатели</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/packages/">Пакеты</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../chapter_2/format/">Форматированный вывод</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Глава 3. Map, интерфесы, и другое</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Мапы (отображения)</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Создание отображений</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Работа с отображениями</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Итерирование по мапам</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Golang Tutorial</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Глава 3. Map, интерфесы, и другое &raquo;</li>
+      <li>Мапы (отображения)</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="map">Map (Отображения)</h1>
+<p>Отображения - структура данных, неупорядоченная коллекция пар "ключ-значение", в которой все ключи различны, а значение, связанное с заданным ключом, можно получить, обновить или удалить независимо от размера карты (отображения).</p>
+<p>Отображение в Go представляет собой ссылку на хеш-таблицу, а его тип записывается как <code>map[K]V</code>, где К и V являются типами его ключей и значений.</p>
+<p>Все ключи в данном отображении имеют один и тот же тип, как и все значения имеют один и тот же тип, но тип ключей не обязан совпадать с типом значений. Тип ключа К должен быть сравниваемым с помощью оператора ==, чтобы отображение могло проверить, равен ли данный ключ одному из имеющихся в нем.</p>
+<h2 id="_1">Создание отображений</h2>
+<p>Объеявление <strong>map</strong> выглядит следующим образом:</p>
+<pre><code>var RomanNums map[string]int
+
+// где string - ключ, а int - значение
+</code></pre>
+<p>Однако так делать крайне нежелательно, так как мы не инициализировали его и при добавлении значений будут ошибки:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    var RomanNums map[string]int
+    RomanNums[&quot;I&quot;] = 1
+
+    fmt.Println(RomanNums)  // panic: assignment to entry in nil map
+}
+</code></pre>
+<p>Поэтому есть второй, более правильный и надежный способ создания мапы в Go:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+
+func main() {
+    // с помощью встроенной функции make:
+    ArabicNums := make(map[int]int)
+
+    // c помощь. использования литерала отображения:
+    RomanNums := map[string]int{
+        // пары ключ: значение указываются при необходимости
+        &quot;I&quot;: 1,
+        &quot;II&quot;: 2,
+        &quot;III&quot;: 3,
+        &quot;IV&quot;: 4,
+        &quot;V&quot;: 5,
+    }
+
+    fmt.Println(ArabicNums) // map[]
+    fmt.Println(RomanNums)  // map[I:1 II:2 III:3 IV:4 V:5]
+}
+</code></pre>
+<h2 id="_2">Работа с отображениями</h2>
+<p>Обратиться к элементу отображения можно с помощью обычной индексации:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    RomanNums := map[string]int{
+        &quot;I&quot;: 1,
+        &quot;II&quot;: 2,
+        &quot;III&quot;: 3,
+        &quot;IV&quot;: 4,
+        &quot;V&quot;: 5,
+    }
+    fmt.Println(RomanNums[&quot;IV&quot;])    // 4
+}
+</code></pre>
+<p>Если необъодимо удалить пару <code>ключ: значение</code>, то необходимо воспользоваться функцией <code>delete()</code>:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    RomanNums := map[string]int{
+        &quot;I&quot;: 1,
+        &quot;II&quot;: 2,
+        &quot;III&quot;: 3,
+        &quot;IV&quot;: 4,
+        &quot;V&quot;: 5,
+    }
+    delete(RomanNums, &quot;I&quot;)
+    fmt.Println(RomanNums)  // map[II:2 III:3 IV:4 V:5]
+}
+</code></pre>
+<p>Все эти операции безопасны, даже при условии, что элемент в отображении отсутствует: при использовании ключа, которого нет в отображении, поиск возвращает нулевое значение соответствующего типа:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    RomanNums := map[string]int{
+        &quot;I&quot;: 1,
+        &quot;II&quot;: 2,
+        &quot;III&quot;: 3,
+        &quot;IV&quot;: 4,
+        &quot;V&quot;: 5,
+    }
+    delete(RomanNums, &quot;I&quot;)
+
+    fmt.Println(RomanNums)  // map[II:2 III:3 IV:4 V:5]
+    fmt.Println(RomanNums[&quot;I&quot;]) // 0 (т.к. значение теперь отсутствует)
+}
+</code></pre>
+<p>В приведенном примере мы видим, что если ключ в отображении отсутствует, то при обращении к значению по ключу будет возвращено нулевое значение соответствующего типа. Особенно это критично, если согласно логике нашей программы такое нулевое значение может иметь место. Как же понять, что ключ в отображении присутствует? Мы можем воспользоваться тестом из следующего примера:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    RomanNums := map[string]int{
+        &quot;II&quot;: 2,
+        &quot;III&quot;: 3,
+        &quot;IV&quot;: 4,
+        &quot;V&quot;: 5,
+    }
+    if value, inMap := RomanNums[&quot;I&quot;]; inMap {
+        fmt.Println(value)
+    }   // Условие не выполнится
+
+    if value, inMap := RomanNums[&quot;II&quot;]; inMap {
+        fmt.Println(value)  // 2
+    }   // Условие выполнится
+}
+</code></pre>
+<h2 id="_3">Итерирование по мапам</h2>
+<p>Для перечисления всех пар "ключ-значение" в отображении мы используем циклы по диапазону, аналогичные тем, которые мы использовали для массивов и срезов. Последовательные итерации приведенного ниже цикла присваивают переменным <code>key</code> и <code>value</code> значения из очередной пары "ключ-значение":</p>
+<pre><code>for key, value := range RomanNums {
+    fmt.Println(key, value)
+}
+</code></pre>
+<p>Если нам необходимо получить только значения мапы, то вместо <code>key</code> используем прочерк <code>_</code>.</p>
+<p>Кроме того, Go позволяет применить к отображению функцию <strong>len()</strong>, которая вернет количество пар "ключ-значение", хранящееся в отображении:</p>
+<pre><code>package main
+import &quot;fmt&quot;
+
+func main() {
+    RomanNums := map[string]int{
+        &quot;II&quot;: 2,
+        &quot;III&quot;: 3,
+        &quot;IV&quot;: 4,
+        &quot;V&quot;: 5,
+    }
+    fmt.Println(len(RomanNums)) // 4
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../chapter_2/format/" class="btn btn-neutral float-left" title="Форматированный вывод"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../chapter_2/format/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
