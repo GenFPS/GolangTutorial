@@ -16,6 +16,7 @@ nav:
       - Функции: chapter_2/function.md
       - Указатели: chapter_2/pointers.md
       - Пакеты: chapter_2/packages.md
+      - Форматированный вывод: chapter_2/format.md
 theme: readthedocs
 markdown_extensions:
     - extra
